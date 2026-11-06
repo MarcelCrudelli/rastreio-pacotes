@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Dupla: [NOME 1] e [NOME 2] -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RastreioPacotesApp.Views.BuscaPage"
+             Title="Rastreamento">
+    <VerticalStackLayout Padding="24" Spacing="16" VerticalOptions="Center">
+        <Label Text="📦 Rastreie seu pacote" FontSize="28" FontAttributes="Bold"
+               HorizontalOptions="Center" />
+        <Label Text="Digite o código de rastreamento abaixo."
+               HorizontalOptions="Center" />
+
+        <Entry Text="{Binding Codigo}" Placeholder="Ex.: BR123456789"
+               ReturnCommand="{Binding BuscarCommand}" />
+
+        <Label Text="{Binding MensagemErro}" TextColor="Red"
+               IsVisible="{Binding TemErro}" HorizontalOptions="Center" />
+
+        <Button Text="Rastrear" Command="{Binding BuscarCommand}" />
+
+        <ActivityIndicator IsRunning="{Binding Ocupado}" IsVisible="{Binding Ocupado}" />
+
+        <Label Text="Códigos de teste: BR123456789, BR987654321, BR555555555"
+               FontSize="12" TextColor="Gray" HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

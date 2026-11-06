@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Dupla: [NOME 1] e [NOME 2] -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:RastreioPacotesApp.Models"
+             x:Class="RastreioPacotesApp.Views.ResultadoPage"
+             Title="Resultado">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="12">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="6">
+            <Label Text="{Binding Pacote.Id, StringFormat='Código: {0}'}"
+                   FontSize="20" FontAttributes="Bold" />
+            <Label Text="{Binding Pacote.Status, StringFormat='Status: {0}'}"
+                   FontSize="18" TextColor="#2E7D32" FontAttributes="Bold" />
+            <Label Text="{Binding Pacote.DataEnvio, StringFormat='Data de envio: {0:dd/MM/yyyy}'}" />
+            <Label Text="{Binding Pacote.DataPrevistaEntrega, StringFormat='Previsão de entrega: {0:dd/MM/yyyy}'}" />
+            <Label Text="{Binding Pacote.LocalizacaoAtual, StringFormat='Localização atual: {0}'}" />
+            <Label Text="Histórico de eventos" FontSize="18" FontAttributes="Bold" Margin="0,10,0,0" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Historico}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:EventoRastreamento">
+                    <Border Padding="10" Margin="0,4" StrokeThickness="1" Stroke="LightGray">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="{Binding Descricao}" FontAttributes="Bold" />
+                            <Label Text="{Binding Local}" />
+                            <Label Text="{Binding DataHora, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+                                   FontSize="12" TextColor="Gray" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="2" Text="Nova consulta" Command="{Binding NovaConsultaCommand}" />
+    </Grid>
+</ContentPage>
